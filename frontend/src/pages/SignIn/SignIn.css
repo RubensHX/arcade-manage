@@ -1,0 +1,128 @@
+.header {
+  padding: 1rem;
+}
+
+.container {
+  margin-top: -4rem;
+}
+
+.goBack {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding: 0.5rem;
+  color: #fff;
+  font-size: 1.5rem;
+  border-radius: 16rem;
+  cursor: pointer;
+  background: #8c52ff;
+}
+
+.mainTitle {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  top: 6rem;
+  left: 1rem;
+}
+
+.title {
+  color: #000;
+}
+
+.subtitle {
+  color: #474747;
+}
+
+.input {
+    color: #272727;
+    display: inline-block;
+    flex-direction: row;
+    padding: .3rem;
+}
+
+.inputBlock {
+  border-bottom: rgba(56, 56, 56, 0.4) 1px solid;
+  gap: 0.5rem;
+}
+
+.inputText {
+  background: transparent;
+  border: none;
+  padding: .4rem;
+}
+
+.inputText::placeholder {
+  text-align: center;
+}
+
+.inputText:focus {
+  outline: none;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.passwrdReset {
+  color: #324A59;
+  font-weight: bold;
+  font-size: .875rem;
+}
+
+.signInButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  color: #fff;
+  width: 16rem;
+  font-size: 1.2rem;
+  border-radius: 16rem;
+  cursor: pointer;
+  background: #8c52ff;
+}
+
+.optional {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.optional > p {
+  color: #8c52ff;
+  border: #8c52ff 1px solid;
+  border-radius: 16rem;
+  font-size: .7rem;
+  width: 2rem;
+  height: 2rem;
+  padding: .5rem;
+  overflow: hidden;
+}
+
+.optional > .line {
+  width: 2rem;
+  height: 1px;
+  background: #8c52ff;
+}
+
+.socialAuth {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+

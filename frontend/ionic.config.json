@@ -1,0 +1,7 @@
+{
+  "name": "arcade-manager",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}

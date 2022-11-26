@@ -1,0 +1,61 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100vh;
+}
+
+.heroSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.slogan {
+    color: #000;
+    font-weight: 700;
+}
+
+.buttonClass {
+    display: grid;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: repeat(1, 1fr);
+}
+
+.nextButton {
+    display: inline-block;
+    background: #8c52ff;
+    padding: 1rem;
+    border-radius: 2rem;
+}
+
+.bubbleClass {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
+    margin-bottom: 1rem;
+}
+
+.activeBubble {
+    background: #8c52ff;
+    width: 2rem;
+    height: 1rem;
+    border-radius: 1rem;
+}
+
+.inactiveBubble {
+    background: #e1e1e1;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 1rem;
+}
