@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
-import { UsuarioModule } from './usuario/usuario.module';
-import { ProdutosModule } from './produtos/produtos.module';
-import { ClienteModule } from './cliente/cliente.module';
+import { ConfigModule } from '@nestjs/config';
+import { AuthModule } from './auth/auth.module';
 import { AppController } from './app.controller';
+import { FirebaseService } from './firebase/firebase.service';
 
 @Module({
-  imports: [UsuarioModule, ProdutosModule, ClienteModule],
+  imports: [AuthModule, ConfigModule.forRoot()],
   controllers: [AppController],
   providers: [],
 })
