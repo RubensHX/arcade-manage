@@ -2,12 +2,12 @@ import { Body, Controller, Post } from '@nestjs/common';
 import { auth } from 'firebase/firebase';
 import { UsuarioService } from './usuario.service';
 
-@Controller('/usuario')
+@Controller('usuario')
 export class UsuarioController {
   constructor(private readonly usuarioService: UsuarioService) {}
 
   @Post('/create')
-  async create(@Body() email: string, password: string) {
+  async create(@Body() email: string, @Body() password: string) {
     this.usuarioService.createUser(auth, email, password);
   }
 

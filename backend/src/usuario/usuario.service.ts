@@ -25,11 +25,7 @@ export class UsuarioService {
   }
 
   async login(auth: Auth, email: string, password: string) {
-    const userCredential = await signInWithEmailAndPassword(
-      auth,
-      email,
-      password,
-    )
+    await signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
         return user;
@@ -39,7 +35,6 @@ export class UsuarioService {
         const errorMessage = error.message;
         return `${errorCode} - ${errorMessage}`;
       });
-    return userCredential;
   }
 
   async logout(auth: Auth) {
