@@ -3,10 +3,12 @@ import { UsuarioController } from './usuario/usuario.controller';
 import { UsuarioService } from './usuario/usuario.service';
 import { ClienteController } from './cliente/cliente.controller';
 import { ClienteService } from './cliente/cliente.service';
+import { ProdutosController } from './produtos/produtos.controller';
+import { ProdutosService } from './produtos/produtos.service';
 
 @Module({
   imports: [],
-  controllers: [UsuarioController, ClienteController],
-  providers: [UsuarioService, ClienteService],
+  controllers: [UsuarioController, ClienteController, ProdutosController],
+  providers: [UsuarioService, ClienteService, ProdutosService],
 })
 export class AppModule {}

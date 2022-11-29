@@ -12,12 +12,16 @@ import {
 @Injectable()
 export class UsuarioService {
   async createUser(auth: Auth, email: string, password: string) {
-    const userCredential: UserCredential = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password,
-    );
-    return userCredential.user;
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential: UserCredential) => {
+        const user = userCredential.user;
+        return user;
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        return `${errorCode} - ${errorMessage}`;
+      });
   }
 
   async login(auth: Auth, email: string, password: string) {
