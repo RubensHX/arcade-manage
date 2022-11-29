@@ -20,4 +20,9 @@ export class AuthController {
   async logout() {
     this.authService.logout();
   }
+
+  @Post('googleLogin')
+  async googleLogin() {
+    this.authService.googleLogin();
+  }
 }

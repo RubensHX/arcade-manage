@@ -1,8 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { FirebaseService } from '../firebase/firebase.service';
 import {
+  AuthError,
   createUserWithEmailAndPassword,
+  GoogleAuthProvider,
   signInWithEmailAndPassword,
+  signInWithPopup,
+  signInWithRedirect,
   UserCredential,
 } from 'firebase/auth';
 import {
@@ -14,6 +18,9 @@ import {
   setDoc,
 } from 'firebase/firestore';
 import { Auth } from './auth';
+import { HttpException } from '@nestjs/common/exceptions';
+import { HttpStatus } from '@nestjs/common/enums';
+import { Http2ServerResponse } from 'http2';
 
 @Injectable()
 export class AuthService {
@@ -42,7 +49,10 @@ export class AuthService {
         return data;
       }
     } catch (error: unknown) {
-      console.warn(`[ERROR] ${error}`);
+      const firebaseError = error as AuthError;
+      if (firebaseError.code === 'auth/wrong-password') {
+        throw new HttpException('Wrong password', HttpStatus.UNAUTHORIZED);
+      }
     }
   }
 
@@ -63,7 +73,10 @@ export class AuthService {
         await setDoc(docRef, body);
       }
     } catch (error: unknown) {
-      console.warn(`[ERROR] ${error}`);
+      const firebaseError = error as AuthError;
+      if (firebaseError.code === 'auth/email-already-in-use') {
+        throw new HttpException('Email already in use', HttpStatus.CONFLICT);
+      }
     }
   }
 
@@ -74,5 +87,18 @@ export class AuthService {
     } catch (error: unknown) {
       console.warn(`[ERROR] ${error}`);
     }
+  }
+
+  async googleLogin() {
+    const provider = new GoogleAuthProvider();
+    await signInWithRedirect(this.firebaseService.auth, provider)
+      .then((result) => {
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        return token;
+      })
+      .catch((error) => {
+        console.warn(`[ERROR] ${error}`);
+      });
   }
 }
