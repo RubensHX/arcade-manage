@@ -7,6 +7,7 @@ import {
   deleteDoc,
   doc,
   setDoc,
+  getDoc,
 } from 'firebase/firestore';
 import { randomUUID } from 'crypto';
 
@@ -16,8 +17,12 @@ export class ClienteService {
     await setDoc(doc(db, 'clients', randomUUID()), cliente);
   }
 
-  async read() {
+  async findAll() {
     await getDocs(collection(db, 'users'));
+  }
+
+  async findOne(id: string) {
+    await getDoc(doc(db, 'clients', id));
   }
 
   async update(cliente: Cliente, id: string) {

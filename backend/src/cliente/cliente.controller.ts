@@ -18,9 +18,13 @@ export class ClienteController {
     this.clienteService.create(cliente);
   }
 
-  @Get('/read')
-  async read() {
-    this.clienteService.read();
+  @Get('/findAll')
+  async findAll() {
+    this.clienteService.findAll();
+  }
+
+  async findOne(@Param('id') id: string) {
+    this.clienteService.findOne(id);
   }
 
   @Patch('/update/:id')
