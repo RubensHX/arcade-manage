@@ -91,11 +91,12 @@ export class AuthService {
 
   async googleLogin() {
     const provider = new GoogleAuthProvider();
-    await signInWithRedirect(this.firebaseService.auth, provider)
+    await signInWithPopup(this.firebaseService.auth, provider)
       .then((result) => {
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
-        return token;
+        const user = result.user;
+        return { token, user };
       })
       .catch((error) => {
         console.warn(`[ERROR] ${error}`);
