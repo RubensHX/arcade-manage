@@ -20,7 +20,6 @@ import {
 import { Auth } from './auth';
 import { HttpException } from '@nestjs/common/exceptions';
 import { HttpStatus } from '@nestjs/common/enums';
-import { Http2ServerResponse } from 'http2';
 
 @Injectable()
 export class AuthService {
