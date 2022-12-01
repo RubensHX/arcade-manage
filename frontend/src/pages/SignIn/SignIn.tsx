@@ -4,12 +4,23 @@ import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import SocialAuth from "../../components/SocialAuth/SocialAuth";
 import "./SignIn.css";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
+import axios from "axios";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [authorized, setAuthorized] = useState(false);
+
+  const handleSubmit = async (e: FormEvent) => {
+    await axios("http://192.168.3.6:3000/api/auth/login", {
+      method: "POST",
+      data: {
+        email: email,
+        password: password,
+      }
+    })
+  }
 
   return (
     <IonPage>
@@ -26,7 +37,7 @@ export default function SignIn() {
             <h1 className="title">Entrar</h1>
             <p className="subtitle">Bem-vindo</p>
           </div>
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="inputBlock">
               <label className="input" htmlFor="email">
                 <FiMail />
