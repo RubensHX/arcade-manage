@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Response } from '@nestjs/common';
 import { Auth } from './auth';
 import { AuthService } from './auth.service';
 
@@ -16,13 +16,24 @@ export class AuthController {
     this.authService.login(body);
   }
 
-  @Post('logout')
-  async logout() {
+  @Get('logout')
+  async logout(@Response() res) {
     this.authService.logout();
+    res.send('Logged out');
   }
 
   @Post('googleLogin')
   async googleLogin() {
     this.authService.googleLogin();
+  }
+
+  @Get('isAuthenticated')
+  isAuthenticated(@Response() res) {
+    const user = this.authService.isAuthenticated();
+    if (user) {
+      return res.send(true);
+    } else {
+      return res.send(false);
+    }
   }
 }

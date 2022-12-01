@@ -2,15 +2,14 @@ import { IonPage, IonContent } from "@ionic/react";
 import { FiArrowLeft, FiMail, FiLock } from "react-icons/fi";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
-
 import SocialAuth from "../../components/SocialAuth/SocialAuth";
 import "./SignIn.css";
 import { useState } from "react";
 
 export default function SignIn() {
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [authorized, setAuthorized] = useState(false);
 
   return (
     <IonPage>
@@ -39,6 +38,7 @@ export default function SignIn() {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="E-mail"
                   required
+                  autoComplete="off"
                 />
               </label>
             </div>
@@ -56,7 +56,7 @@ export default function SignIn() {
                 />
               </label>
             </div>
-            <a href="#" className="passwrdReset">
+            <a href="/resetPassword" className="passwrdReset">
               Esqueceu sua senha?
             </a>
             <div className="authButtons">

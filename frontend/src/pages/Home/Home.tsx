@@ -1,15 +1,20 @@
-import { IonContent, IonPage} from '@ionic/react';
-import Welcome from '../Welcome/Welcome';
-import './Home.css';
+import { IonContent, IonPage } from "@ionic/react";
+import { Redirect } from "react-router";
 
-const Home: React.FC = () => {
-  return (
-    <IonPage>
-      <IonContent fullscreen>
-        <Welcome />
-      </IonContent>
-    </IonPage>
-  );
-};
+type Props = {
+    authorized: boolean;
+}
 
-export default Home;
+
+export default function Home({ authorized }: Props) {
+    if (!authorized) {
+        return <Redirect to="/signin" />
+    }
+    return (
+        <IonPage>
+            <IonContent fullscreen>
+
+            </IonContent>
+        </IonPage>
+    )
+}

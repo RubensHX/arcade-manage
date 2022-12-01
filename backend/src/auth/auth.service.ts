@@ -1,9 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Res } from '@nestjs/common';
 import { FirebaseService } from '../firebase/firebase.service';
 import {
   AuthError,
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
+  onAuthStateChanged,
   signInWithEmailAndPassword,
   signInWithPopup,
   signInWithRedirect,
@@ -100,5 +101,9 @@ export class AuthService {
       .catch((error) => {
         console.warn(`[ERROR] ${error}`);
       });
+  }
+
+  isAuthenticated() {
+    return this.firebaseService.auth.currentUser;
   }
 }
