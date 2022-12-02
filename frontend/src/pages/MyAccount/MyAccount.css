@@ -1,0 +1,23 @@
+
+.container-myaccount {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 30vh;
+}
+
+.button {
+  color: #000000;
+  background: transparent;
+  border: none;
+  padding: .4rem;
+  width: 15rem;
+}
+
+.div-button-block {
+  border-bottom: rgba(56, 56, 56, 0.4) 1px solid;
+  gap: .5rem;
+}
+

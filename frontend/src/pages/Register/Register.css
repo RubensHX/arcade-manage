@@ -18,13 +18,13 @@
   background: #8c52ff;
 }
 
-.mainTitle {
+.mainTitleRegister {
   position: absolute;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  top: 6rem;
+  top: 4rem;
   left: 2rem;
 }
 
@@ -45,7 +45,7 @@
 
 .inputBlock {
   border-bottom: rgba(56, 56, 56, 0.4) 1px solid;
-  gap: 0.5rem;
+  gap: .5rem;
 }
 
 .inputText {
@@ -67,15 +67,14 @@ form {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
-  margin-top: 2rem;
+  gap: 0.7rem;
+  margin-top: 8rem;
 }
 
-.passwrdReset {
+.termsofuse {
   color: #324A59;
   font-weight: bold;
-  font-size: .645rem;
-  margin-bottom: 2rem;
+  font-size: .545rem;
 }
 
 .signInButton {

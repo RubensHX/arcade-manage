@@ -11,5 +11,5 @@
     border-radius: 16rem;
     cursor: pointer;
     background: transparent;
-    border: #8c52ff 1px solid;
+    box-shadow: 0px 2px 20px #C1C7D0;
   }

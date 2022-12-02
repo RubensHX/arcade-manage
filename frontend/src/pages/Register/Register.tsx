@@ -1,13 +1,13 @@
 import { IonPage, IonContent } from "@ionic/react";
-import { FiArrowLeft, FiMail, FiLock } from "react-icons/fi";
+import { FiArrowLeft, FiMail, FiLock , FiSmartphone, FiUser} from "react-icons/fi";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import SocialAuth from "../../components/SocialAuth/SocialAuth";
-import "./SignIn.css";
+import "./Register.css";
 import { FormEvent, useState } from "react";
-import axios from 'axios';
+import axios from "axios";
 
-export default function SignIn() {
+export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [authorized, setAuthorized] = useState(false);
@@ -26,18 +26,46 @@ export default function SignIn() {
     <IonPage>
       <IonContent fullscreen>
         <header className="header">
-          <a href="/home">
+          <a href="/signin">
             <button className="goBack">
               <FiArrowLeft />
             </button>
           </a>
         </header>
         <div className="container">
-          <div className="mainTitle">
-            <h1 className="title">Entrar</h1>
-            <p className="subtitle">Bem-vindo</p>
+          <div className="mainTitleRegister">
+            <h1 className="title">Cadastrar</h1>
+            <p className="subtitle">Criar conta</p>
           </div>
           <form onSubmit={handleSubmit}>
+            <div className="inputBlock">
+              <label className="input" htmlFor="nome">
+                <FiUser />
+                <input
+                  className="inputText"
+                  type="text"
+                  name="nome"
+                  id="nome"
+                  placeholder="Nome"
+                  required
+                  autoComplete="off"
+                />
+              </label>
+            </div>
+            <div className="inputBlock">
+              <label className="input" htmlFor="telefone">
+                <FiSmartphone />
+                <input
+                  className="inputText"
+                  type="tel"
+                  name="telefone"
+                  id="telefone"
+                  placeholder="Telefone"
+                  required
+                  autoComplete="off"
+                />
+              </label>
+            </div>
             <div className="inputBlock">
               <label className="input" htmlFor="email">
                 <FiMail />
@@ -67,12 +95,12 @@ export default function SignIn() {
                 />
               </label>
             </div>
-            <a href="/resetPassword" className="passwrdReset">
-              Esqueceu sua senha?
-            </a>
+            <p className="termsofuse">
+              Ao se cadastrar você concorda com os termos de Uso
+            </p>
             <div className="authButtons">
               <button className="signInButton" type="submit">
-                Entrar
+                Criar
               </button>
               <div className="optional">
                 <div className="line"></div>
@@ -86,7 +114,7 @@ export default function SignIn() {
             </div>
           </form>
           <footer className="footer">
-            <p>Novo usuário? <a href="/register">Casdastre-se</a></p>
+            <p>Já possui um cadastro? <a href="/signin">Entrar</a></p>
           </footer>
         </div>
       </IonContent>

@@ -1,0 +1,25 @@
+.headerMain {
+  background-color: #8C52FF;
+  display: flex;
+  justify-content: space-between;
+  height: 4rem;
+}
+
+.goBackMain {
+  padding: 1rem;
+  color: #fff;
+  font-size: 1.5rem;
+  border-radius: 16rem;
+  cursor: pointer;
+  background: #8c52ff;
+}
+
+.titleMain {
+  padding: 0.5rem;
+  color: #fff;
+  font-size: .9rem;
+}
+
+.imgMain {
+  padding: 1rem;
+}
