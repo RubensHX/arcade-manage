@@ -5,22 +5,38 @@ import { FaFacebook } from "react-icons/fa";
 import SocialAuth from "../../components/SocialAuth/SocialAuth";
 import "./SignIn.css";
 import { FormEvent, useState } from "react";
-import axios from 'axios';
+import axios from "axios";
+import { Redirect } from "react-router";
+import { Route } from 'react-router-dom';
+import Home from "../Home/Home";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [authorized, setAuthorized] = useState(false);
 
-  const handleSubmit = async (e: FormEvent) => {
-    await axios("http://192.168.3.6:3000/api/auth/login", {
+  const handleLogin = async (e: FormEvent) => {
+    e.preventDefault();
+    await axios("http://localhost:3000/auth/login", {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+      },
       data: {
         email: email,
         password: password,
+      },
+    }).then((res) => {
+      if (res.status === 201) {
+        setAuthorized(true);
+        <Route component={() => <Home authorized={authorized} />}>
+          <Redirect to="/homePage" />
+        </Route>
       }
-    })
-  }
+    });
+  };
 
   return (
     <IonPage>
@@ -37,7 +53,7 @@ export default function SignIn() {
             <h1 className="title">Entrar</h1>
             <p className="subtitle">Bem-vindo</p>
           </div>
-          <form onSubmit={handleSubmit}>
+          <form>
             <div className="inputBlock">
               <label className="input" htmlFor="email">
                 <FiMail />
@@ -71,7 +87,7 @@ export default function SignIn() {
               Esqueceu sua senha?
             </a>
             <div className="authButtons">
-              <button className="signInButton" type="submit">
+              <button className="signInButton" onClick={handleLogin}>
                 Entrar
               </button>
               <div className="optional">

@@ -2,6 +2,7 @@
   "name": "arcade-manager",
   "version": "0.0.1",
   "private": true,
+  "proxy": "http://localhost:3000",
   "dependencies": {
     "@capacitor/app": "4.1.0",
     "@capacitor/core": "4.4.0",
@@ -27,7 +28,7 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.6.0",
     "react-router": "^5.2.0",
-    "react-router-dom": "^5.2.0",
+    "react-router-dom": "^5.3.4",
     "react-scripts": "^5.0.0",
     "sass": "^1.56.1",
     "scss": "^0.2.4",
