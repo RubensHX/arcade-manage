@@ -31,9 +31,6 @@ export default function SignIn() {
     }).then((res) => {
       if (res.status === 201) {
         setAuthorized(true);
-        <Route component={() => <Home authorized={authorized} />}>
-          <Redirect to="/homePage" />
-        </Route>
       }
     });
   };

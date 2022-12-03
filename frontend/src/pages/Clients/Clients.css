@@ -1,46 +1,80 @@
-
-
-.container > input {
-    width: 80%;
-    height: 40px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: #f8f8f8;
-    padding: 12px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;
-    transition: 0.5s;
-    outline: none;
-    color: #000;
+.clientContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
 }
 
-.container > input:focus {
-    border: 2px solid #8c52ff;
+.inputDiv > input {
+  background: transparent;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  color: #000;
 }
 
-.container > input::placeholder {
-    text-align: center;
+.inputDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
-.container > ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 2rem;
+.inputDiv > input {
+  position: absolute;
+  width: 300px;
+  height: 23.79px;
+  top: calc(50% - 23.79px / 2 - 319.1px);
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 194.62%;
+  /* identical to box height, or 23px */
+
+  color: #aaaaaa;
 }
 
-.container > ul > li {
-    padding: 12px 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: #f8f8f8;
-    margin-bottom: 8px;
-    color: #000;
-    cursor: pointer;
-    transition: all 0.3s;
+.inputDiv > input:focus {
+  outline: none;
 }
 
-.container > ul > li:hover {
-    background-color: #ddd;
-    color: rgb(92, 92, 92);
-    border: 1px solid #8c52ff;
+.clientContainer > input::placeholder {
+  text-align: left;
+}
+
+.clientCard {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  color: #000;
+  background: #f3f5f5;
+  padding: 0.875rem;
+  top: 12rem;
+}
+
+.clientCard > ul {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+}
+
+.clientCard > ul > li {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.emptyMessage {
+    color: #aaaaaa;
 }
