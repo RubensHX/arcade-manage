@@ -1,0 +1,45 @@
+.topbar > header {
+  position: absolute;
+  width: 100%;
+  height: 108px;
+  left: 0px;
+  top: 0px;
+
+  background: #8c52ff;
+}
+
+.topbar > header > h2 {
+  position: absolute;
+  left: 42.06%;
+  right: 42.29%;
+  top: 58.33%;
+  bottom: 21.3%;
+
+  font-family: "Tomorrow";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 140%;
+  /* or 22px */
+
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.2px;
+
+  color: #ffffff;
+}
+
+.topbar > header > img {
+  position: absolute;
+  left: 86.92%;
+  right: 3.5%;
+  top: 50%;
+  bottom: 12.04%;
+}
+
+.arrowLeft {
+    background: transparent;
+    width: 6rem;
+    height: 8rem;
+    font-size: 1.5rem;
+}

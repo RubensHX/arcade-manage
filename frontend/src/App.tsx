@@ -25,6 +25,7 @@ import Register from './pages/Register/Register';
 import Start from './pages/Start/Start';
 import Home from './pages/Home/Home';
 import MyAccount from './pages/MyAccount/MyAccount';
+import Clients from './pages/Clients/Clients';
 
 
 setupIonicReact();
@@ -37,6 +38,7 @@ const App: React.FC = () => (
         <Route exact path="/register" component={Register} />
         <Route exact path="/homePage" component={() => <Home authorized={false} />} />
         <Route exact path="/myaccount" component={MyAccount} />
+        <Route exact path="/clients" component={Clients} />
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>

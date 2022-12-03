@@ -1,0 +1,46 @@
+
+
+.container > input {
+    width: 80%;
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    transition: 0.5s;
+    outline: none;
+    color: #000;
+}
+
+.container > input:focus {
+    border: 2px solid #8c52ff;
+}
+
+.container > input::placeholder {
+    text-align: center;
+}
+
+.container > ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 2rem;
+}
+
+.container > ul > li {
+    padding: 12px 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    margin-bottom: 8px;
+    color: #000;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.container > ul > li:hover {
+    background-color: #ddd;
+    color: rgb(92, 92, 92);
+    border: 1px solid #8c52ff;
+}
