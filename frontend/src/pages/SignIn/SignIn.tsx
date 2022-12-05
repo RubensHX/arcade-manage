@@ -11,14 +11,14 @@ import {
   getAuth,
   GoogleAuthProvider,
   signInWithPopup,
+  User,
 } from "firebase/auth";
 import { app } from "../../config/firebase/firebase";
-import { Redirect } from "react-router";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [authorized, setAuthorized] = useState(false);
+  const [user, setUser] = useState<User>();
   const form = document.querySelector("form");
 
   form?.addEventListener("submit", (e) => {
@@ -39,9 +39,9 @@ export default function SignIn() {
         password: password,
       },
     }).then((res) => {
-      if (res.status === 201) {
-        <Redirect to="/homePage" />;
-      }
+      setUser(res.data);
+      sessionStorage.setItem("user", JSON.stringify(user));
+      sessionStorage.setItem("token", user?.refreshToken ?? "");
     });
   };
 
@@ -55,7 +55,6 @@ export default function SignIn() {
         const user = result.user;
         sessionStorage.setItem("@AuthFirebase:token", token ?? "");
         sessionStorage.setItem("@AuthFirebase:user", JSON.stringify(user));
-        <Redirect to="/homePage" />;
       })
       .catch((error) => {
         const errorCode = error.code;
