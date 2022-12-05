@@ -3,10 +3,10 @@ import { IonPage, IonContent } from "@ionic/react";
 import { useEffect, useId, useMemo, useState, FormEvent } from "react";
 import Topbar from "../../components/Topbar/Topbar";
 import { v4 as uuid } from "uuid";
-import { WhatsappLogo } from "phosphor-react";
+import { Trash, WhatsappLogo } from "phosphor-react";
 import Modal from "react-modal";
 import axios from "axios";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 interface Client {
   id: string;
   name: string;
@@ -49,6 +49,18 @@ export default function Clients() {
     setIsOpen(false);
   }
 
+  function handleClientRemove(client: Client) {
+    axios
+      .delete(`http://localhost:3000/clients/delete/${client.id}`)
+      .then(() => {
+        toast.success("Cliente removido com sucesso!");
+        setClients(clients.filter((c) => c.id !== client.id));
+      })
+      .catch(() => {
+        toast.error("Não foi possível remover o cliente!");
+      });
+  }
+
   const handleNewClient = (event: FormEvent) => {
     event.preventDefault();
     axios("http://localhost:3000/clients/create", {
@@ -85,8 +97,8 @@ export default function Clients() {
                 <ul>
                   {filteredClients.map((client) => (
                     <>
-                      <li key={uuid()}>
-                      <div className="cardClient">
+                      <li key={client.id}>
+                        <div className="cardClient">
                           <p>{client.name}</p>
                           <p>{client.email}</p>
                           <p>
@@ -113,8 +125,8 @@ export default function Clients() {
                 <ul>
                   {clients.map((client) => (
                     <>
-                      <li key={uuid()}>
-                      <div className="cardClient">
+                      <li key={client.id}>
+                        <div className="cardClient">
                           <p>{client.name}</p>
                           <p>{client.email}</p>
                           <p>
@@ -132,6 +144,11 @@ export default function Clients() {
                             </a>
                           </p>
                           <p>{client.address}</p>
+                          <div className="clientRemove">
+                            <button onClick={() => handleClientRemove(client)}>
+                                <Trash size={16} color="red" /> Excluir cliente
+                            </button>
+                          </div>
                         </div>
                       </li>
                     </>
@@ -215,6 +232,7 @@ export default function Clients() {
             </form>
           </Modal>
         </footer>
+        <ToastContainer />
       </IonContent>
     </IonPage>
   );
