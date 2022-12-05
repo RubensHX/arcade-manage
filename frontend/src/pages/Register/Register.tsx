@@ -13,7 +13,7 @@ export default function Register() {
   const [authorized, setAuthorized] = useState(false);
 
   const handleSubmit = async (e: FormEvent) => {
-    await axios("http://192.168.3.6:3000/api/auth/login", {
+    await axios("http://192.168.3.6:3000/api/auth/register", {
       method: "POST",
       data: {
         email: email,

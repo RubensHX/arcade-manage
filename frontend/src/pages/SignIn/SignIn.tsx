@@ -13,6 +13,7 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import { app } from "../../config/firebase/firebase";
+import { Redirect } from "react-router";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
@@ -39,7 +40,7 @@ export default function SignIn() {
       },
     }).then((res) => {
       if (res.status === 201) {
-        setAuthorized(true);
+        <Redirect to="/homePage" />;
       }
     });
   };
@@ -54,6 +55,7 @@ export default function SignIn() {
         const user = result.user;
         sessionStorage.setItem("@AuthFirebase:token", token ?? "");
         sessionStorage.setItem("@AuthFirebase:user", JSON.stringify(user));
+        <Redirect to="/homePage" />;
       })
       .catch((error) => {
         const errorCode = error.code;
