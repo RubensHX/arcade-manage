@@ -6,14 +6,23 @@ import SocialAuth from "../../components/SocialAuth/SocialAuth";
 import "./SignIn.css";
 import { FormEvent, useState } from "react";
 import axios from "axios";
-import { Redirect } from "react-router";
-import { Route } from 'react-router-dom';
-import Home from "../Home/Home";
+import {
+  FacebookAuthProvider,
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
+import { app } from "../../config/firebase/firebase";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [authorized, setAuthorized] = useState(false);
+  const form = document.querySelector("form");
+
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+  });
 
   const handleLogin = async (e: FormEvent) => {
     e.preventDefault();
@@ -33,6 +42,46 @@ export default function SignIn() {
         setAuthorized(true);
       }
     });
+  };
+
+  const handleGoogleAuth = () => {
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential?.accessToken;
+        const user = result.user;
+        sessionStorage.setItem("@AuthFirebase:token", token ?? "");
+        sessionStorage.setItem("@AuthFirebase:user", JSON.stringify(user));
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        const email = error.email;
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        console.log(errorCode, errorMessage, email, credential);
+      });
+  };
+
+  const handleFacebookAuth = () => {
+    const auth = getAuth(app);
+    const provider = new FacebookAuthProvider();
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const credential = FacebookAuthProvider.credentialFromResult(result);
+        const token = credential?.accessToken;
+        const user = result.user;
+        sessionStorage.setItem("@AuthFirebase:token", token ?? "");
+        sessionStorage.setItem("@AuthFirebase:user", JSON.stringify(user));
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        const email = error.email;
+        const credential = FacebookAuthProvider.credentialFromError(error);
+        console.log(errorCode, errorMessage, email, credential);
+      });
   };
 
   return (
@@ -61,7 +110,6 @@ export default function SignIn() {
                   id="email"
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="E-mail"
-                  required
                   autoComplete="off"
                 />
               </label>
@@ -76,7 +124,6 @@ export default function SignIn() {
                   id="password"
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Senha"
-                  required
                 />
               </label>
             </div>
@@ -93,13 +140,23 @@ export default function SignIn() {
                 <div className="line"></div>
               </div>
               <div className="socialAuth">
-                <SocialAuth icon={<FcGoogle />} title="Entrar com Google" />
-                <SocialAuth icon={<FaFacebook />} title="Entrar com Facebook" />
+                <SocialAuth
+                  icon={<FcGoogle />}
+                  title="Entrar com Google"
+                  action={handleGoogleAuth}
+                />
+                <SocialAuth
+                  icon={<FaFacebook />}
+                  title="Entrar com Facebook"
+                  action={handleFacebookAuth}
+                />
               </div>
             </div>
           </form>
           <footer className="footer">
-            <p>Novo usuário? <a href="/register">Casdastre-se</a></p>
+            <p>
+              Novo usuário? <a href="/register">Casdastre-se</a>
+            </p>
           </footer>
         </div>
       </IonContent>
