@@ -33,7 +33,7 @@ export default function SignIn() {
           </a>
         </header>
         <div className="container">
-          <div className="mainTitle">
+          <div className="mainTitle-signin">
             <h1 className="title">Entrar</h1>
             <p className="subtitle">Bem-vindo</p>
           </div>

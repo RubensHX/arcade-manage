@@ -32,11 +32,11 @@ export default function Register() {
             </button>
           </a>
         </header>
-        <div className="container">
-          <div className="mainTitleRegister">
-            <h1 className="title">Cadastrar</h1>
-            <p className="subtitle">Criar conta</p>
-          </div>
+        <div className="mainTitle-register">
+          <h1 className="title">Cadastrar</h1>
+          <p className="subtitle">Criar conta</p>
+        </div>
+        <div className="container-register">
           <form onSubmit={handleSubmit}>
             <div className="inputBlock">
               <label className="input" htmlFor="nome">

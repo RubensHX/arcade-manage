@@ -1,5 +1,5 @@
 import { IonPage, IonContent } from "@ionic/react";
-import {FiUser, FiMessageCircle} from "react-icons/fi";
+import {FiUser, FiMessageCircle, FiChevronRight} from "react-icons/fi";
 import MainHeader from "../../components/MainHeader/MainHeader";
 import "./MyAccount.css";
 import { FormEvent, useState } from "react";
@@ -24,24 +24,32 @@ export default function MyAccount() {
     <IonPage>
       <IonContent fullscreen>
         <header>
-            <MainHeader title="Minha Conta" />
+            <MainHeader title="Minha Conta" href="/signin" />
         </header>
         <body>
           <div className="container-myaccount">
-            <div>
+            <div className="img-myaccount">
               <img src="../../assets/Rectangle 472.svg" alt="" />
             </div>
             <div className="div-button-block">
-              <button className="button">
-                <FiUser/> Informações da conta
-              </button>
+              <a href="">
+                <button className="button-myaccount">
+                  <FiUser/> Informações da conta <FiChevronRight/>
+                </button>
+              </a>
             </div>
             <div className="div-button-block">
-              <button className="button">
-                <FiMessageCircle/> Ajuda e suporte
+              <button className="button-myaccount">
+                <FiMessageCircle/> Ajuda e suporte <FiChevronRight/>
               </button>
             </div>
           </div>
+          <footer className="footer">
+            <div className="footer-myaccount">
+              <a href="/signin">Sair da conta</a>
+              <p className="version">v.1.0.0</p>
+            </div>
+          </footer>
         </body>
       </IonContent>
     </IonPage>

@@ -18,13 +18,13 @@
   background: #8c52ff;
 }
 
-.mainTitle {
+.mainTitle-signin {
   position: absolute;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  top: 6rem;
+  top: 3rem;
   left: 2rem;
 }
 

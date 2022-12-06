@@ -5,19 +5,42 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  height: 30vh;
+  height: 45vh;
 }
 
-.button {
+.img-myaccount {
+  padding: 2rem;
+}
+
+.button-myaccount {
   color: #000000;
   background: transparent;
   border: none;
   padding: .4rem;
-  width: 15rem;
+  font-size: .95rem;
+  width: 16rem;
 }
 
 .div-button-block {
-  border-bottom: rgba(56, 56, 56, 0.4) 1px solid;
+  border-bottom: #C1C7D0 1px solid;
   gap: .5rem;
+  margin-bottom: 2rem;
+}
+
+.footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer-myaccount {
+  height: 3rem;
+  background-color: gray;
+  display: flex;
+  justify-content: space-between;
+}
+
+.version {
+  padding: 1rem;
 }
 
