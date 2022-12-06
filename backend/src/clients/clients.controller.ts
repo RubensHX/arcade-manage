@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
 } from '@nestjs/common';
+import { randomUUID } from 'crypto';
 import { ClientsService } from './clients.service';
 import { Client } from './entities/client.entity';
 
@@ -15,7 +16,8 @@ export class ClientsController {
   constructor(private readonly clientsService: ClientsService) {}
 
   @Post('create')
-  create(@Body() body: Omit<Client, 'id'>) {
+  create(@Body() body: Client) {
+    body.id = randomUUID();
     return this.clientsService.create(body);
   }
 

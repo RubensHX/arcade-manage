@@ -12,19 +12,15 @@ export class AuthController {
   }
 
   @Post('login')
-  async login(@Body() body: Auth) {
+  async login(@Body() body: Auth, @Response() res) {
     this.authService.login(body);
+    res.send(this.authService.isAuthenticated);
   }
 
   @Get('logout')
   async logout(@Response() res) {
     this.authService.logout();
     res.send('Logged out');
-  }
-
-  @Post('googleLogin')
-  async googleLogin() {
-    this.authService.googleLogin();
   }
 
   @Get('isAuthenticated')

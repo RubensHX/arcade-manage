@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { randomUUID } from 'crypto';
 import {
   deleteDoc,
   doc,
@@ -14,7 +15,7 @@ import { Client } from './entities/client.entity';
 export class ClientsService {
   constructor(private firebaseService: FirebaseService) {}
 
-  async create(body: Omit<Client, 'id'>) {
+  async create(body: Client) {
     const docRef: DocumentReference = doc(
       this.firebaseService.clientsCollection,
     );
