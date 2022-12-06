@@ -9,13 +9,15 @@ import {
 } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { Product } from './entities/product.entity';
+import { randomUUID } from 'crypto';
 
 @Controller('products')
 export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
 
   @Post('create')
-  create(@Body() body: Omit<Product, 'id'>) {
+  create(@Body() body: Product) {
+    body.id = randomUUID();
     return this.productsService.create(body);
   }
 
