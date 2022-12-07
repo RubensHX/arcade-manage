@@ -7,6 +7,7 @@ import {
   getDoc,
   getDocs,
   setDoc,
+  updateDoc,
 } from 'firebase/firestore';
 import { FirebaseService } from '../firebase/firebase.service';
 import { Client } from './entities/client.entity';
@@ -41,7 +42,7 @@ export class ClientsService {
       this.firebaseService.clientsCollection,
       id,
     );
-    await setDoc(docRef, body, { merge: true });
+    await updateDoc(docRef, { ...body });
   }
 
   async remove(id: string) {
