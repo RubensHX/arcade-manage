@@ -15,7 +15,7 @@ export default function Topbar({ title }: TopbarProps) {
           </button>
         </a>
         <h2>{title}</h2>
-        <img src="../../assets/Rectangle 475.svg" alt="logo"/>
+        <img src="../public/assets/Rectangle 475.svg" alt="logo"/>
       </header>
     </div>
   );

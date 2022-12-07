@@ -2,7 +2,6 @@
   "name": "arcade-manager",
   "version": "0.0.1",
   "private": true,
-  "proxy": "http://localhost:3000",
   "dependencies": {
     "@capacitor/app": "4.1.0",
     "@capacitor/core": "4.4.0",
