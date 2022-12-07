@@ -132,7 +132,7 @@
   padding: .875rem;
 }
 
-.clientRemove {
+.separateDiv {
   border-top: 1px solid rgba(155, 155, 155, 0.2);
   display: flex;
   flex-direction: row;
@@ -143,9 +143,30 @@
   padding: .875rem;
 }
 
-.clientRemove > button {
+.separateDiv > button, .trash-button {
   background: transparent;
   color: #000;
   text-align: center;
   padding: .875rem;
+}
+
+.action-button {
+  background: #8c52ff;
+  border-radius: 50%;
+  text-align: center;
+  padding: .875rem;
+}
+.action-button-danger {
+  background: #ff5e52;
+  border-radius: 50%;
+  text-align: center;
+  padding: .875rem;
+}
+
+.buttonGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: .875rem .875rem;
+  justify-content: space-between;
 }
