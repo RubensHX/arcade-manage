@@ -5,7 +5,8 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  height: 45vh;
+  height: 88%;
+  width: 88%;
 }
 
 .img-myaccount {
@@ -35,12 +36,22 @@
 
 .footer-myaccount {
   height: 3rem;
-  background-color: gray;
+  background-color: #F3F5F5;
   display: flex;
   justify-content: space-between;
 }
 
 .version {
+  color: #000000;
+  text-decoration: none;
+  padding: .4rem;
+  font-size: .6rem;
+}
+
+.teste {
+  color: #8C52FFDB;
+  text-decoration: none;
   padding: 1rem;
+  font-size: .9rem;
 }
 

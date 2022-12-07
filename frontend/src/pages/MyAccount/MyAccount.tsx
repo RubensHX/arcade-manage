@@ -46,7 +46,7 @@ export default function MyAccount() {
           </div>
           <footer className="footer">
             <div className="footer-myaccount">
-              <a href="/signin">Sair da conta</a>
+              <a className="teste" href="/signin">Sair da conta</a>
               <p className="version">v.1.0.0</p>
             </div>
           </footer>
