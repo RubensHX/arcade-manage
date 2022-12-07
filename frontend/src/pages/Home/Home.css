@@ -6,9 +6,17 @@
     color: #000;
 }
 
+.home-page-header > p {
+    font-size: .875rem;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.5);
+    margin-left: 8rem;
+}
+
 .home-page-header > img {
     width: 94px;
     height: 98px;
+    padding: .875rem;
 }
 
 .home-page-header > button {

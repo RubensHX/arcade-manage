@@ -16,7 +16,7 @@ export default function SocialAuth({ title, href}: MainHeaderProps) {
                 </button>
             </a>
             <p className="titleMain">{title}</p>
-            <img className="imgMain" src="../public/assets/Rectangle 475.svg" alt="" />
+            <img className="imgMain" src="../../assets/Rectangle 475.svg" alt="" />
             
         </div>
     )

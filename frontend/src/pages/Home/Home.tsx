@@ -1,7 +1,7 @@
 import { IonContent, IonPage } from "@ionic/react";
 import axios from "axios";
 import "./Home.css";
-import { useState } from "react";
+import { useState, useEffect, useMemo } from 'react';
 import {
   Bag,
   ShoppingCartSimple,
@@ -10,24 +10,12 @@ import {
   User,
 } from "phosphor-react";
 import { format } from "date-fns";
+import { getAuth } from 'firebase/auth';
+import { app } from "../../config/firebase/firebase";
 
 export default function Home() {
   const [username, setUsername] = useState("");
-  const [date, setDate] = useState<Date>(new Date());
-
-  window.onload = () => handleUserData();
-  const handleUserData = () => {
-    setUsername(
-      JSON.parse(
-        sessionStorage.getItem("@AuthFirebase:user") ?? "",
-        (key, value) => {
-          if (key === "displayName") {
-            return value;
-          }
-        }
-      )
-    );
-  };
+  const date = new Date();
 
   const handleLogout = () => {
     axios("http://localhost:3000/auth/logout", {
@@ -42,12 +30,21 @@ export default function Home() {
     window.location.href = "/signin";
   };
 
+  useEffect(() => {
+    const auth = getAuth(app);
+    const user = auth.currentUser;
+    if (user) {
+      setUsername(user.displayName ?? "");
+    }
+  }, [])
+
   return (
     <IonPage>
       <IonContent fullscreen>
         <header className="home-page-header">
-          <img src="../public/assets/Rectangle 2635.svg" alt="logo" />
+          <img src="../../assets/Rectangle 2635.png" alt="logo" />
           <p>Olá, {username}</p>
+          
           <button onClick={handleLogout}>
             <SignOut size={32} color="#000" />
           </button>
