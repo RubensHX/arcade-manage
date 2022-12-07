@@ -42,6 +42,7 @@ export default function SignIn() {
       setUser(res.data);
       sessionStorage.setItem("user", JSON.stringify(user));
       sessionStorage.setItem("token", user?.refreshToken ?? "");
+      window.location.href = "/homePage";
     });
   };
 
@@ -55,6 +56,7 @@ export default function SignIn() {
         const user = result.user;
         sessionStorage.setItem("@AuthFirebase:token", token ?? "");
         sessionStorage.setItem("@AuthFirebase:user", JSON.stringify(user));
+        window.location.href = "/homePage";
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -75,6 +77,7 @@ export default function SignIn() {
         const user = result.user;
         sessionStorage.setItem("@AuthFirebase:token", token ?? "");
         sessionStorage.setItem("@AuthFirebase:user", JSON.stringify(user));
+        window.location.href = "/homePage";
       })
       .catch((error) => {
         const errorCode = error.code;

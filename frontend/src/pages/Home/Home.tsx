@@ -1,24 +1,92 @@
 import { IonContent, IonPage } from "@ionic/react";
 import axios from "axios";
-
+import "./Home.css";
+import { useState } from "react";
+import {
+  Bag,
+  ShoppingCartSimple,
+  SignOut,
+  SquaresFour,
+  User,
+} from "phosphor-react";
+import { format } from "date-fns";
 
 export default function Home() {
-    const handleLogout = () => {
-        axios("http://localhost:3000/auth/logout", {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-            },
-        })
-    }
+  const [username, setUsername] = useState("");
+  const [date, setDate] = useState<Date>(new Date());
 
-    return (
-        <IonPage>
-            <IonContent fullscreen>
-                <button onClick={handleLogout}>Logout</button>
-            </IonContent>
-        </IonPage>
-    )
+  window.onload = () => handleUserData();
+  const handleUserData = () => {
+    setUsername(
+      JSON.parse(
+        sessionStorage.getItem("@AuthFirebase:user") ?? "",
+        (key, value) => {
+          if (key === "displayName") {
+            return value;
+          }
+        }
+      )
+    );
+  };
+
+  const handleLogout = () => {
+    axios("http://localhost:3000/auth/logout", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+      },
+    });
+    sessionStorage.clear();
+    window.location.href = "/signin";
+  };
+
+  return (
+    <IonPage>
+      <IonContent fullscreen>
+        <header className="home-page-header">
+          <img src="../public/assets/Rectangle 2635.svg" alt="logo" />
+          <p>Olá, {username}</p>
+          <button onClick={handleLogout}>
+            <SignOut size={32} color="#000" />
+          </button>
+        </header>
+        <main className="home-page-main">
+          <section className="home-page-my-sales">
+            <p>{format(date, "dd/MM/yyyy")}</p>
+            <h6>Total de vendas</h6>
+            <h6>Quantidade</h6>
+            <h3>Minhas vendas</h3>
+          </section>
+          <section className="home-page-grid">
+            <ul>
+              <li>
+                <a href="/products">
+                <Bag size={32} /> Produtos
+                </a>
+              </li>
+              <li>
+                <a href="/clients">
+                  <User size={32} /> Clientes
+                </a>
+              </li>
+              <li>
+                <a href="/sales">
+                <ShoppingCartSimple size={32} />
+                </a>
+                Vendas
+              </li>
+              <li>
+                <a href="/categories">
+                <SquaresFour size={32} />
+                </a>
+                Categorias
+              </li>
+            </ul>
+          </section>
+        </main>
+      </IonContent>
+    </IonPage>
+  );
 }

@@ -21,6 +21,7 @@
     "@types/react-router": "^5.1.11",
     "@types/react-router-dom": "^5.1.7",
     "axios": "^1.2.0",
+    "date-fns": "^2.29.3",
     "firebase": "^9.14.0",
     "ionicons": "^6.0.3",
     "phosphor-react": "^1.4.1",
