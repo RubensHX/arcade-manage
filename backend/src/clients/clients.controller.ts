@@ -17,7 +17,6 @@ export class ClientsController {
 
   @Post('create')
   create(@Body() body: Client) {
-    body.id = randomUUID();
     return this.clientsService.create(body);
   }
 

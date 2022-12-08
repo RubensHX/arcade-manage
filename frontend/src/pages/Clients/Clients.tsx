@@ -25,6 +25,7 @@ export default function Clients() {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
+  const [id, setId] = useState("");
 
   useMemo(() => {
     fetch("http://localhost:3000/clients/find-all")
@@ -50,8 +51,13 @@ export default function Clients() {
     setIsOpenNewClient(false);
   }
 
-  function openModalEditClient() {
+  function openModalEditClient(client: Client) {
     setIsOpenEditClient(true);
+    setId(client.id);
+    setName(client.name);
+    setEmail(client.email);
+    setPhone(client.phone);
+    setAddress(client.address);
   }
 
   function closeModalEditClient() {
@@ -69,7 +75,6 @@ export default function Clients() {
       .catch(() => {
         toast.error("Não foi possível remover o cliente!");
       });
-      
   }
 
   const handleNewClient = (event: FormEvent) => {
@@ -85,30 +90,24 @@ export default function Clients() {
     });
     closeModal();
     toast.success("Cliente cadastrado com sucesso!");
+    window.location.reload();
   };
 
-  const handleClientEdit = (client: Client) => {
-    openModalEditClient();
-    setName(client.name);
-    setEmail(client.email);
-    setPhone(client.phone);
-    setAddress(client.address);
-  };
-
-  const saveClientEdit = (event: FormEvent) => {
+  const handleClientEdit = (event: FormEvent) => {
     event.preventDefault();
-    axios(`http://localhost:3000/clients/update/`, {
-      method: "PUT",
+    axios(`http://localhost:3000/clients/update/${id}`, {
+      method: "PATCH",
       data: {
         name: name,
         email: email,
         phone: phone,
         address: address,
-      },
-    });
-    closeModalEditClient();
-    toast.success("Cliente editado com sucesso!");
-  }
+      }
+    }).then(() => {
+      closeModalEditClient();
+      toast.success("Cliente editado com sucesso!");
+    })
+  };
 
   return (
     <IonPage>
@@ -151,20 +150,20 @@ export default function Clients() {
                           </p>
                           <p>{client.address}</p>
                           <div className="separateDiv">
-                            <button
-                              className="trash-button"
-                              onClick={() => handleClientRemove(client)}
-                            >
-                              <Trash size={16} color="red" /> Excluir cliente
-                            </button>
-                          </div>
-                          <div className="separateDiv">
-                            <button
-                              className="trash-button"
-                              onClick={() => handleClientEdit(client)}
-                            >
-                              <Pencil size={16} color="blue" /> Editar cliente
-                            </button>
+                            <div className="buttonGrid">
+                              <button
+                                className="action-button-danger"
+                                onClick={() => handleClientRemove(client)}
+                              >
+                                <Trash size={16} color="white" />
+                              </button>
+                              <button
+                                className="action-button"
+                                onClick={() => openModalEditClient(client)}
+                              >
+                                <Pencil size={16} color="white" />
+                              </button>
+                            </div>
                           </div>
                         </div>
                       </li>
@@ -204,7 +203,7 @@ export default function Clients() {
                               </button>
                               <button
                                 className="action-button"
-                                onClick={() => handleClientEdit(client)}
+                                onClick={() => openModalEditClient(client)}
                               >
                                 <Pencil size={16} color="white" />
                               </button>
@@ -322,7 +321,7 @@ export default function Clients() {
           contentLabel="Cadastro de cliente"
         >
           <h1>Editar cliente</h1>
-          <form onSubmit={saveClientEdit} className="createClientForm">
+          <form onSubmit={() => handleClientEdit} className="createClientForm">
             <input
               type="text"
               name="name"

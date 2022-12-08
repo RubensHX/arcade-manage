@@ -6,6 +6,7 @@ import {
   DocumentReference,
   getDoc,
   getDocs,
+  query,
   setDoc,
   updateDoc,
 } from 'firebase/firestore';
@@ -24,8 +25,9 @@ export class ClientsService {
   }
 
   async findAll() {
-    const snapshot = await getDocs(this.firebaseService.clientsCollection);
-    return snapshot.docs.map((doc) => doc.data());
+    const q = query(this.firebaseService.clientsCollection);
+    const querySnapshot = await getDocs(q);
+    return querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
   }
 
   async findOne(id: string) {

@@ -24,6 +24,7 @@
   justify-content: center;
   align-items: center;
   width: 100%;
+  margin-bottom: 3rem;
 }
 
 .inputDiv > input {
@@ -37,8 +38,6 @@
   font-weight: 400;
   font-size: 12px;
   line-height: 194.62%;
-  /* identical to box height, or 23px */
-
   color: #aaaaaa;
 }
 
@@ -63,11 +62,14 @@
 }
 
 .listContainer > ul {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
   flex-direction: column;
   justify-content: space-between;
   padding-inline: .875rem;
   gap: .875rem;
+  margin-top: 1rem;
 }
 
 
