@@ -63,13 +63,13 @@
 
 .listContainer > ul {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   grid-template-rows: 1fr;
   flex-direction: column;
   justify-content: space-between;
   padding-inline: .875rem;
   gap: .875rem;
-  margin-top: 1rem;
+  margin-top: 8rem;
 }
 
 
