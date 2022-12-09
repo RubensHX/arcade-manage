@@ -7,12 +7,20 @@ import Modal from "react-modal";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { SubmitHandler, useForm } from "react-hook-form";
 interface Client {
   id: string;
   name: string;
   email: string;
   phone: string;
   address: string;
+}
+
+interface IFormInput {
+  name?: string;
+  email?: string;
+  phone?: string;
+  address?: string;
 }
 
 export default function Clients() {
@@ -26,6 +34,26 @@ export default function Clients() {
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [id, setId] = useState("");
+  const { handleSubmit, register } = useForm<IFormInput>();
+
+  const onSubmit: SubmitHandler<IFormInput> = (data) => {
+    fetch(`http://localhost:3000/clients/update/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        address: data.address,
+      }),
+    }).then(() => {
+      toast.success("Cliente atualizado com sucesso!");
+      closeModalEditClient();
+      window.location.reload();
+    })
+  }
 
   useMemo(() => {
     fetch("http://localhost:3000/clients/find-all")
@@ -91,22 +119,6 @@ export default function Clients() {
     closeModal();
     toast.success("Cliente cadastrado com sucesso!");
     window.location.reload();
-  };
-
-  const handleClientEdit = (event: FormEvent) => {
-    event.preventDefault();
-    axios(`http://localhost:3000/clients/update/${id}`, {
-      method: "PATCH",
-      data: {
-        name: name,
-        email: email,
-        phone: phone,
-        address: address,
-      }
-    }).then(() => {
-      closeModalEditClient();
-      toast.success("Cliente editado com sucesso!");
-    })
   };
 
   return (
@@ -321,41 +333,37 @@ export default function Clients() {
           contentLabel="Cadastro de cliente"
         >
           <h1>Editar cliente</h1>
-          <form onSubmit={() => handleClientEdit} className="createClientForm">
+          <form onSubmit={handleSubmit(onSubmit)} className="createClientForm">
             <input
               type="text"
-              name="name"
               id="name"
-              value={name}
+              defaultValue={name}
+              {...register("name", { required: false })}
               placeholder="Nome"
-              onChange={(e) => setName(e.target.value)}
               autoComplete="off"
             />
             <input
               type="text"
-              name="email"
               id="email"
-              value={email}
+              defaultValue={email}
+              {...register("email", { required: false })}
               placeholder="Email"
-              onChange={(e) => setEmail(e.target.value)}
               autoComplete="off"
             />
             <input
               type="text"
-              name="phone"
               id="phone"
-              value={phone}
+              defaultValue={phone}
+              {...register("phone", { required: false })}
               placeholder="Telefone"
-              onChange={(e) => setPhone(e.target.value)}
               autoComplete="off"
             />
             <input
               type="text"
-              name="address"
               id="address"
-              value={address}
+              defaultValue={address}
+              {...register("address", { required: false })}
               placeholder="Endereço"
-              onChange={(e) => setAddress(e.target.value)}
               autoComplete="off"
             />
             <button type="submit">Editar</button>
