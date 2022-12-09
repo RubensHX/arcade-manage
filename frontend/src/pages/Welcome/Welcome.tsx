@@ -6,7 +6,7 @@ export default function Welcome() {
     <IonPage>
       <div className="container">
         <div className="heroSection">
-          <img src="../../assets/Rectangle 2635.svg" alt="logo" />
+          <img src="/assets/Rectangle 2635.png" alt="logo" />
           <p className="slogan">
             Seu negócio organizado e na palma de sua mão. Realize vendas rápido
             e ganhe tempo tempo e dinheiro.

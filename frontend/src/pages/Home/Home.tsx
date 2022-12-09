@@ -1,7 +1,7 @@
 import { IonContent, IonPage } from "@ionic/react";
 import axios from "axios";
 import "./Home.css";
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Bag,
   ShoppingCartSimple,
@@ -31,12 +31,14 @@ export default function Home() {
   };
 
   useEffect(() => {
-    const auth = getAuth(app);
-    const user = auth.currentUser;
-    if (user) {
-      setUsername(user.displayName ?? "");
-    }
-  }, [])
+    getAuth(app).onAuthStateChanged(function(user) {
+      if (user) {
+        setUsername(user.displayName ?? "");
+      } else {
+        window.location.href = "/signin";
+      }
+    })
+  }, [username])
 
   return (
     <IonPage>
@@ -60,13 +62,15 @@ export default function Home() {
             <ul>
               <li>
                 <a href="/products">
-                <Bag size={32} /> Produtos
+                <Bag size={32} /> 
                 </a>
+                Produtos
               </li>
               <li>
                 <a href="/clients">
-                  <User size={32} /> Clientes
+                  <User size={32} /> 
                 </a>
+                Clientes
               </li>
               <li>
                 <a href="/sales">

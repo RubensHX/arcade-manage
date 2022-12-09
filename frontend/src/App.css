@@ -1,0 +1,45 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #ffffff;
+}
+
+button,
+li,
+a {
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 87.5%;
+  }
+}
+
+@media (max-width: 1920px) {
+  html {
+    font-size: 96.5%;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #8c52ff;
+  transition: opacity 0.2s ease-in-out;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  opacity: 0.9;
+}

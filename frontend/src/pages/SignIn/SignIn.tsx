@@ -46,10 +46,10 @@ export default function SignIn() {
     });
   };
 
-  const handleGoogleAuth = () => {
+   const handleGoogleAuth = async () => {
     const auth = getAuth(app);
     const provider = new GoogleAuthProvider();
-    signInWithPopup(auth, provider)
+    await signInWithPopup(auth, provider)
       .then((result) => {
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential?.accessToken;
